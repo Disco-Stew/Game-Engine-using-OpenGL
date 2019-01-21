@@ -5,7 +5,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-//#include <SOIL.h>
 #include "stb_image.h"
 #include "Shader.h"
 #include "info.h"
@@ -21,7 +20,6 @@ private:
 
 	GLuint numOfVertices;
 	GLsizei sizeOfVertices;
-
 
 	std::vector<const GLchar*> faces;
 

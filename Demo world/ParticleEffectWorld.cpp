@@ -31,11 +31,10 @@ void ParticleEffectWorld::draw()
 	glm::mat4 view = camera.getView();
 	glm::mat4 projection = camera.getProjection();
 	glm::vec3 cameraPos = camera.getCameraPosition();
-	//glEnable(GL_DEPTH_TEST);
+
 	glDepthFunc(GL_LEQUAL);
 	skyBox.draw(view, projection);
 
-	//glDisable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
 	particleFactory->draw(view, projection, cameraPos);
 }
@@ -50,8 +49,6 @@ GLvoid ParticleEffectWorld::input(GLFWwindow* window, int key, int scancode, int
 		else
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
-
-
 
 	if (action == GLFW_PRESS)
 	{

@@ -32,8 +32,10 @@ ParticleEffect::ParticleEffect(GLint pps, glm::vec3 systemCentre, GLchar* textur
 ParticleEffect::ParticleEffect(GLint pps, glm::vec3 systemCentre) 
 {
 	this->pps = pps;
+
 	//choice of emitter; sphere = 0, cone = 1;
 	this->emitter = 0;
+
 	this->systemCentre = systemCentre;
 	this->infinite = true;
 	this->duration = 0;
@@ -41,7 +43,6 @@ ParticleEffect::ParticleEffect(GLint pps, glm::vec3 systemCentre)
 	particleTexture.numberOfRows = 4;
 	setUp("Texture/blueParticle.png");
 }
-
 
 ParticleEffect::~ParticleEffect()
 {

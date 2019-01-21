@@ -72,7 +72,6 @@ SkyBox::SkyBox()
 	
 	glGenBuffers(1, &textureBuffer);
 
-	// Cubemap (Skybox)
 	faces.push_back("skybox/right.bmp");
 	faces.push_back("skybox/left.bmp");
 	faces.push_back("skybox/top.bmp");
@@ -80,26 +79,16 @@ SkyBox::SkyBox()
 	faces.push_back("skybox/back.bmp");
 	faces.push_back("skybox/front.bmp");
 	texture = loadCubeMap(faces);
-	
-
-	//GLint  width, height;
-	//unsigned char* image = SOIL_load_image("picture.jpg", &width, &height, 0, SOIL_LOAD_RGB);
-	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	//glGenerateMipmap(GL_TEXTURE_2D);
-	//SOIL_free_image_data(image);
-	//glBindTexture(GL_TEXTURE_2D, 0);
-
 }
 
 SkyBox::~SkyBox()
 {
 }
 
-/*Stuart*/
 GLvoid SkyBox::setTexture(const GLchar* right, const GLchar* left, const GLchar* top, const GLchar* bottom, const GLchar* back, const GLchar* front) {
 	glGenBuffers(1, &textureBuffer);
 
-	// Cubemap (Skybox)
+	
 	faces.clear();
 	faces.push_back(right);
 	faces.push_back(left);
@@ -109,12 +98,13 @@ GLvoid SkyBox::setTexture(const GLchar* right, const GLchar* left, const GLchar*
 	faces.push_back(front);
 	texture = loadCubeMap(faces);
 }
+
 GLvoid SkyBox::draw(glm::mat4 viewMatrix, glm::mat4 projection)
 {
 	// skybox cube
 	shader.useProgram();
 
-	// Remember to turn depth writing off
+	// Turn depth writing off for skybox
 	glDepthMask(GL_FALSE);
 
 	// Remove any translation component of the view matrix
@@ -160,6 +150,7 @@ GLuint loadCubeMap(std::vector<const GLchar*> faces)
 		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, image);
 		stbi_image_free(image);
 	}
+	
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);

@@ -12,11 +12,11 @@ ParticleFactory::~ParticleFactory()
 	delete(&movingParticleEffects);
 
 }
+
 GLvoid ParticleFactory::addFireEffect(glm::vec3 location) {
 	particleEffect = new ParticleEffect(1000, location, "Texture/particleAtlas.png", 4, 0, true, 0, 0.0);
 	staticParticleEffects.push_back(particleEffect);
 	numStaticEffects++;
-
 }
 
 GLvoid ParticleFactory::addCollisionEffects(std::vector<glm::vec3> collisions) {
